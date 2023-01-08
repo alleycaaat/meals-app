@@ -25,13 +25,6 @@ function MealDetails({ route }) {
 
             <Subtitle>Steps</Subtitle>
             <CountList data={mealData.steps} />
-
-            <View style={styles.allergens}>
-                <Text>Vegan: {mealData.isVegan}.toString()</Text>
-                <Text>{mealData.affordability}</Text>
-                <Text>{mealData.isLactoseFree}</Text>
-                <Text>{mealData.isGlutenFree}</Text>
-            </View>
         </ScrollView>
     );
 }
@@ -49,17 +42,18 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     },
     title: {
-        fontSize: 20,
+        fontSize: 21,
         //margin: 4,
         fontWeight: 'bold',
         color: 'white',
         textAlign: 'center',
-        borderBottomColor: Colors.darkBlue,
+        borderBottomColor: Colors.orange,
         borderBottomWidth: 3,
         marginBottom: 3,
     },
-
-
+    whiteText: {
+        color: 'white',
+    },
     allergens: {
         flexDirection: 'row',
         flex: 1,

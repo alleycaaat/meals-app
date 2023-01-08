@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
+import Colors from '../utils/Colors';
+
 function MealItem({ data }) {
     const navigation = useNavigation();
     function onPressHandler() {
@@ -11,7 +13,7 @@ function MealItem({ data }) {
     return (
         <View style={styles.container}>
             <Pressable
-                android_ripple={{ color: 'purple' }}
+                android_ripple={{ color: Colors.medOrange }}
                 onPress={onPressHandler}
             >
                 <View>
@@ -24,10 +26,12 @@ function MealItem({ data }) {
                     <Text style={styles.detailsItem}>Time: {data.duration}min</Text>
                 </View>
                 <View style={styles.details}>
-                    <Text style={styles.detailsItem}>Vegan? {data.isVegan}</Text>
-                    <Text style={styles.detailsItem}>Dairy free? {data.isLactose}</Text>
-                    <Text style={styles.detailsItem}>Vegetarian? {data.isVegetarian}</Text>
-                    <Text style={styles.detailsItem}>Gluten free? {data.isGlutenFree}</Text>
+                    <Text style={styles.detailsItem}>Vegetarian</Text>
+                    <Text style={styles.detailData}>{data.isVegetarian === true ? 'Yes' : 'No'}</Text>
+                    <Text style={styles.detailsItem}>Vegan</Text>
+                    <Text style={styles.detailData}>{data.isVegan === true ? 'Yes' : 'No'}</Text>
+                    <Text style={styles.detailsItem}>GF</Text>
+                    <Text style={styles.detailData}>{data.isGlutenFree === true ? 'Yes' : 'No'}</Text>
                 </View>
             </Pressable>
         </View>
@@ -64,5 +68,12 @@ const styles = StyleSheet.create({
     detailsItem: {
         marginHorizontal: 4,
         fontSize: 12,
+        fontWeight: 'bold',
+    },
+    detailData: {
+        marginLeft: 2,
+        marginRight: 4,
+        fontSize: 12,
+        color: Colors.darkBlue,
     }
 });
