@@ -1,9 +1,13 @@
 import { View, Pressable, Text, StyleSheet } from 'react-native';
 
-function CatGridTitle({ title, color }) {
+function CatGridTitle({ title, color, onPress }) {
     return (
         <View style={styles.gridItem}>
-            <Pressable style={styles.button} android_ripple={{ color: '#ccc' }}>
+            <Pressable
+                android_ripple={{ color: '#ccc' }}
+                style={styles.button}
+                onPress={onPress}
+            >
                 <View style={[styles.innerContainer, { backgroundColor: color }]}>
                     <Text style={styles.title}>{title}</Text>
                 </View>
@@ -21,6 +25,7 @@ const styles = StyleSheet.create({
         height: 150,
         borderRadius: 8,
         elevation: 4,
+        backgroundColor: 'white',
         overflow: 'hidden'
     },
     innerContainer: {
@@ -28,7 +33,8 @@ const styles = StyleSheet.create({
         padding: 16,
         borderRadius: 8,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        //overflow: 'hidden'
     },
     button: {
         flex: 1,
