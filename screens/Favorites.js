@@ -1,9 +1,16 @@
-import { Text } from 'react-native';
+import { useContext } from 'react';
+
+import MealsList from '../components/MealsList/MealsList';
+import { FavsContext } from '../store/context/favorites-context';
+import { MEALS } from '../data/data';
 
 function Favorites() {
+    const favMealsCtx = useContext(FavsContext);
+    const favMeals = MEALS.filter(meal => favMealsCtx.ids.includes(meal.id));
+
     return (
-        <Text>Placeholder</Text>
-    )
+        <MealsList items={favMeals} />
+    );
 }
 
-export default Favorites
+export default Favorites;

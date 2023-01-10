@@ -1,6 +1,9 @@
-import { View, Text, StyleSheet, Image, ScrollView, Button } from 'react-native';
-import { useLayoutEffect } from 'react';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
+import { useLayoutEffect, useContext } from 'react';
+
 import { MEALS } from '../data/data';
+
+import { FavsContext } from '../store/context/favorites-context';
 
 import List from '../components/MealDetail/List';
 import CountList from '../components/MealDetail/CountList';
@@ -10,19 +13,34 @@ import IconButton from '../components/IconButton';
 import Colors from '../utils/Colors';
 
 function MealDetails({ route, navigation }) {
+    const FavMealsCtx = useContext(FavsContext);
+
     const data = route.params.mealId;
     const mealData = MEALS.find((meal) => meal.id === data);
 
-    function headerBtn() {
+    const mealIsFav = FavMealsCtx.ids.includes(data);
 
+    function favStatusHandler() {
+        if (mealIsFav) {
+            FavMealsCtx.removeFav(data);
+        } else {
+            FavMealsCtx.addFav(data);
+        }
     }
+
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => {
-                return <IconButton onPress={headerBtn} color='white' icon='star' />;
-            }
+                return (
+                    <IconButton
+                        onPress={favStatusHandler}
+                        color='white'
+                        icon={mealIsFav ? 'star' : 'star-outline'}
+                    />
+                );
+            },
         });
-    }, [navigation, headerBtn]);
+    }, [navigation, favStatusHandler]);
 
     return (
         <ScrollView style={styles.container}>

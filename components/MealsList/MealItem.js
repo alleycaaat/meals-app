@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import Colors from '../utils/Colors';
+import Colors from '../../utils/Colors';
 
 function MealItem({ data }) {
     const navigation = useNavigation();
