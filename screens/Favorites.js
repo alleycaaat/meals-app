@@ -9,7 +9,7 @@ function Favorites() {
     const favMealsCtx = useContext(FavsContext);
     const favMeals = MEALS.filter(meal => favMealsCtx.ids.includes(meal.id));
 
-    if (favMeals.lenth === 0) {
+    if (favMeals.length === 0) {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>No meals have been favorited.</Text>
